@@ -915,6 +915,8 @@ static void mdss_dsi_panel_bl_ctrl(struct mdss_panel_data *pdata,
 	}
 }
 
+bool bb_panel_is_off = false;
+
 static int mdss_dsi_panel_on(struct mdss_panel_data *pdata)
 {
 	struct mdss_dsi_ctrl_pdata *ctrl = NULL;
@@ -959,6 +961,8 @@ static int mdss_dsi_panel_on(struct mdss_panel_data *pdata)
 	/* Ensure low persistence mode is set as before */
 	mdss_dsi_panel_apply_display_setting(pdata, pinfo->persist_mode);
 
+	bb_panel_is_off = false;
+
 end:
 	pr_debug("%s:-\n", __func__);
 	return ret;
@@ -997,6 +1001,8 @@ static int mdss_dsi_post_panel_on(struct mdss_panel_data *pdata)
 		msleep(vsync_period);
 		mdss_dba_utils_hdcp_enable(pinfo->dba_data, true);
 	}
+
+	bb_panel_is_off = true;
 
 end:
 	pr_debug("%s:-\n", __func__);
