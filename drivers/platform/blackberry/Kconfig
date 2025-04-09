@@ -1,0 +1,38 @@
+# BlackBerry (TCL) configuration options
+
+config MACH_BLACKBERRY
+	bool "BlackBerry (TCL) device"
+	depends on ARCH_QCOM
+	help
+	  Support for BlackBerry phones produced by TCL.
+
+config MACH_BLACKBERRY_SDM660
+	bool "BlackBerry SDM660"
+	depends on ARCH_QCOM
+	select MACH_BLACKBERRY
+	help
+	  Support for SDM660 BlackBerry variants
+
+config MACH_BLACKBERRY_SDM636
+	bool "BlackBerry SDM636"
+	depends on ARCH_QCOM
+	select MACH_BLACKBERRY
+	help
+	  Support for SDM636 BlackBerry variants.
+
+menu "BlackBerry board selection"
+
+config MACH_BLACKBERRY_KEY2
+	bool "BlackBerry Key2 board"
+	select MACH_BLACKBERRY_SDM660
+	help
+	  Support for BlackBerry Key2 (athena)
+
+config MACH_BLACKBERRY_KEY2_LE
+	bool "BlackBerry Key2 LE board"
+	select MACH_BLACKBERRY_SDM636
+	help
+	  Support for BlackBerry Key2 LE (luna)
+
+endmenu
+
