@@ -1,30 +1,3 @@
-ifeq ($(CONFIG_BUILD_ARM64_DT_OVERLAY),y)
-dtbo-$(CONFIG_ARCH_MSM8996) += \
-	msm8996-mtp-overlay.dtbo \
-	msm8996-cdp-overlay.dtbo \
-	apq8096pro-v1.1-auto-adp-overlay.dtbo \
-	apq8096pro-v1.1-auto-adp-lite-overlay.dtbo \
-	msm8996pro-auto-adp-overlay.dtbo \
-	msm8996pro-auto-adp-lite-overlay.dtbo \
-	apq8096pro-auto-cdp-overlay.dtbo \
-	msm8996pro-v1.1-auto-cdp-overlay.dtbo
-
-msm8996-mtp-overlay.dtbo-base :=  msm8996pro-v1.1-pmi8996.dtb \
-				msm8996-v3-pmi8996.dtb \
-				msm8996pro-v1.1-pmi8994.dtb \
-				msm8996-v313-pmi8994.dtb \
-				msm8996-v30-pm8994-pmi8994-pm8004.dtb
-
-msm8996-cdp-overlay.dtbo-base :=  msm8996-v3-pmi8994.dtb \
-				 msm8996pro-pmi8994-pm8004.dtb
-
-apq8096pro-v1.1-auto-adp-overlay.dtbo-base := apq8096pro-v1.1-auto.dtb
-apq8096pro-v1.1-auto-adp-lite-overlay.dtbo-base := apq8096pro-v1.1-auto.dtb
-msm8996pro-auto-adp-overlay.dtbo-base := msm8996pro-auto.dtb
-msm8996pro-auto-adp-lite-overlay.dtbo-base := msm8996pro-auto.dtb
-apq8096pro-auto-cdp-overlay.dtbo-base := apq8096pro-auto.dtb
-msm8996pro-v1.1-auto-cdp-overlay.dtbo-base := msm8996pro-v1.1-auto.dtb
-else
 dtb-$(CONFIG_ARCH_MSM8996) += msm8996-v2-pmi8994-cdp.dtb \
 	msm8996-v2-pmi8994-mtp.dtb \
 	msm8996-v2-pmi8994-pmk8001-cdp.dtb \
@@ -59,7 +32,6 @@ dtb-$(CONFIG_ARCH_MSM8996) += msm8996-v2-pmi8994-cdp.dtb \
 	msm8996pro-auto-adp.dtb \
 	msm8996pro-auto-adp-lite.dtb \
 	msm8996pro-auto-cdp.dtb \
-	msm8996pro-auto-cv2x.dtb \
 	msm8996pro-pmi8994-cdp.dtb \
 	msm8996pro-pmi8994-mtp.dtb \
 	msm8996pro-pmi8994-pmk8001-cdp.dtb \
@@ -140,17 +112,9 @@ dtb-$(CONFIG_ARCH_MSM8996) += msm8996-v2-pmi8994-cdp.dtb \
 	apq8096-v3-pmi8994-mdm9x55-slimbus-mtp.dtb \
 	apq8096-v3-pmi8996-mdm9x55-i2s-mtp.dtb \
 	apq8096-v3-pmi8996-mdm9x55-slimbus-mtp.dtb \
-	apq8096-v3-pmi8996-dragonboard.dtb \
-	msm8996-auto-mizar.dtb
-endif
+	apq8096-v3-pmi8996-dragonboard.dtb
 
-dtb-$(CONFIG_MSM_GVM_QUIN) += vplatform-lfv-msm8996-telematics.dtb \
-	vplatform-lfv-msm8996-ivi.dtb \
-	vplatform-lfv-msm8996-ivi_8GB.dtb \
-	vplatform-lfv-msm8996-baseline.dtb \
-	vplatform-lfv-msm8996-ivi-la.dtb \
-	vplatform-lfv-msm8996-ivi-la-recovery.dtb \
-	vplatform-lfv-msm8996-ivi-lv-mt.dtb
+dtb-$(CONFIG_MSM_GVM_QUIN) += vplatform-lfv-msm8996.dtb
 
 ifeq ($(CONFIG_BUILD_ARM64_DT_OVERLAY),y)
 dtbo-$(CONFIG_ARCH_MSM8998) += \
@@ -207,12 +171,15 @@ dtb-$(CONFIG_ARCH_MSM8998) += msm8998-sim.dtb \
 	apq8098-v2.1-svr20.dtb \
 	msm8998-v2.1-interposer-sdm660-cdp.dtb \
 	msm8998-v2.1-interposer-sdm660-mtp.dtb \
-	msm8998-v2.1-interposer-sdm660-qrd.dtb
+	msm8998-v2.1-interposer-sdm660-qrd.dtb \
+	msm8998-9x55-rcm.dtb \
+	msm8998-9x55-cdp.dtb \
+	msm8998-9x55-mtp.dtb
 endif
 
 dtb-$(CONFIG_ARCH_MSMHAMSTER) += msmhamster-rumi.dtb
 
-dtb-$(CONFIG_ARCH_SDM660) += sdm660-sim.dtb \
+dtb-$(CONFIG_ARCH_SDM660_TCT_NOT_DEFINED) += sdm660-sim.dtb \
 	sdm660-internal-codec-cdp.dtb \
 	sdm660-internal-codec-mtp.dtb \
 	sdm660-internal-codec-rcm.dtb \
@@ -291,7 +258,7 @@ dtb-$(CONFIG_ARCH_SDM660) += sdm660-sim.dtb \
 	sda636-pm660a-qrd-hdk.dtb \
 	sda636-pm660a-rcm.dtb
 
-dtb-$(CONFIG_ARCH_SDM630) += sdm630-rumi.dtb \
+dtb-$(CONFIG_ARCH_SDM630_TCT_NOT_DEFINED) += sdm630-rumi.dtb \
 	sdm630-pm660a-rumi.dtb \
 	sdm630-mtp.dtb \
 	sdm630-usbc-audio-mtp.dtb \
@@ -318,12 +285,13 @@ dtb-$(CONFIG_ARCH_SDM630) += sdm630-rumi.dtb \
 	sdm630-headset-jacktype-no-cdp.dtb \
 	sdm630-headset-jacktype-no-rcm.dtb \
 	sdm630-pm660a-headset-jacktype-no-cdp.dtb \
-	sdm630-pm660a-headset-jacktype-no-rcm.dtb \
-	sdm455-mtp.dtb \
-	sdm455-qrd.dtb \
-	sdm455-cdp.dtb \
-	sdm455-rcm.dtb \
-	sdm455-internal-codec-rcm.dtb
+	sdm630-pm660a-headset-jacktype-no-rcm.dtb
+
+# [PLATFORM]-Add-BEGIN by TCTNB.Alvin, 2018-04-02, Defect#6154948, Remove unused dtb
+dtb-$(CONFIG_ARCH_SDM660) += sdm660-internal-codec-mtp-athena.dtb \
+	sdm636-internal-codec-mtp-luna.dtb \
+	sdm636-internal-codec-mtp-minerva.dtb
+# [PLATFORM]-Add-END by TCTNB.Alvin, 2018-04-02
 
 ifeq ($(CONFIG_ARM64),y)
 always          := $(dtb-y)
